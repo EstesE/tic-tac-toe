@@ -2,6 +2,10 @@
 
 import Board from "./board";
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Game = () => {
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -31,22 +35,25 @@ const Game = () => {
 
     return (
       <li key={move}>
-        <button onClick={() => jumpTo(move)}>{description}</button>
+        {/* <button onClick={() => jumpTo(move)}>{description}</button> */}
+        <Button variant="outline-primary" style={{ width: '125px' }} size="sm" className="mb-1" onClick={() => jumpTo(move)}>{description}</Button>
       </li>
     );
   });
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-      </div>
-      <div className="game-info">
+    <Container className="game">
+      <Row>
+        <Col style={{ alignContent: 'center' }} xs={8} className="game-board center-block text-center">
+          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        </Col>
+        <Col style={{ paddingTop: '1rem' }} xs={4} className="game-info">
         <ol>
           {moves}
         </ol>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
