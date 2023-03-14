@@ -21,8 +21,10 @@ const Game = () => {
 
   const moves = history.map((squares, move) => {
     let description;
-    if (move > 0) {
+    if (move > 0 && move < 9) {
       description = `Go to move #${move}`;
+    } else if (move === 9) {
+      description = `End of game!`;
     } else {
       description = `Go to game start`;
     }
